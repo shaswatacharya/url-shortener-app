@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener - Make Links Shorter, Instantly!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-link"></i>
+                <span>URL Shortener</span>
+            </div>
+            <div class="nav-actions">
+                <a href="https://github.com/shaswatacharya" target="_blank" title="GitHub" style="display: flex; align-items: center; text-decoration: none;">
+                    <i class="fa-brands fa-github" style="color: #FFD43B; font-size: 2rem;"></i>
+                </a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="hero-section">
+                <h1>Make Every Link Count</h1>
+                <p>Shorten, customize, and share your links effortlessly</p>
+            </div>
+
+            <div class="url-form-container">
+                <div class="url-form">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <i class="fas fa-link input-icon"></i>
+                            <input type="url" id="urlInput" placeholder="Paste your long URL here..." required>
+                        </div>
+                        <button id="shortenBtn" class="primary-btn">
+                            <i class="fas fa-magic"></i>
+                            <span>Trim Link</span>
+                        </button>
+                    </div>
+                    <div class="custom-url-section">
+                        <div class="input-wrapper">
+                            <i class="fas fa-tag input-icon"></i>
+                            <input type="text" id="customSlug" placeholder="Custom alias (optional)">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="result" class="result-container">
+                </div>
+            </div>
+
+            <div class="features-section">
+                <div class="feature-card">
+                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                    <h3>Easy & Instant</h3>
+                    <p>Shorten links in seconds with our quick service.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                    <h3>Secure</h3>
+                    <p>Your links are private and protected at all times.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-qrcode" aria-hidden="true"></i>
+                    <h3>QR Codes</h3>
+                    <p>Generate QR codes for easy sharing and access.</p>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> Recent URLs</h2>
+                    <div class="history-actions">
+                        <button id="clearHistory" class="clear-btn">
+                            <i class="fas fa-trash"></i>
+                            Clear History
+                        </button>
+                    </div>
+                </div>
+                <div id="urlHistory" class="url-history">
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="notification" class="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <footer style="text-align:center; color:#d1d5db; font-size:0.95rem; padding:1.5rem 0 0.5rem 0; opacity:0.85;">
+        Made with <span style="color:#FFD43B;">&#9733;</span> by <a href="https://github.com/shaswatacharya" target="_blank" style="color:#FFD43B; text-decoration:none; font-weight:600;">shaswatacharya</a><br>
+        <span style="font-size:0.8em; opacity:0.7;">Design inspired by <a href="https://github.com/unshreif" target="_blank" style="color:#FFD43B; text-decoration:none; font-weight:500;">unshreif</a></span>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
