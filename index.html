@@ -3,7 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener - Make Links Shorter, Instantly!</title>
+    <title>URL Shortener - Modern, Fast & Secure Link Trimmer</title>
+    <meta name="description" content="A sleek, dark-themed web app to instantly shorten URLs, generate stylish QR codes, and manage your link history—all with a beautiful, modern interface. Built by shaswatacharya.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#111827">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="URL Shortener - Modern, Fast & Secure Link Trimmer">
+    <meta property="og:description" content="Shorten, customize, and share your links effortlessly. Generate QR codes and manage your recent links with a beautiful, dark UI.">
+    <meta property="og:image" content="https://shaswatacharya.github.io/URL_Shortener/og-image.png">
+    <meta property="og:url" content="https://shaswatacharya.github.io/URL_Shortener/">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="URL Shortener - Modern, Fast & Secure Link Trimmer">
+    <meta name="twitter:description" content="Shorten, customize, and share your links effortlessly. Generate QR codes and manage your recent links with a beautiful, dark UI.">
+    <meta name="twitter:image" content="https://shaswatacharya.github.io/URL_Shortener/og-image.png">
+    <meta name="twitter:site" content="@shaswatacharya">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -12,10 +32,10 @@
 <body>
     <div class="app-container">
         <nav class="navbar">
-            <div class="logo">
+            <a href="/" class="logo" id="logoLink">
                 <i class="fas fa-link"></i>
                 <span>URL Shortener</span>
-            </div>
+            </a>
             <div class="nav-actions">
                 <a href="https://github.com/shaswatacharya" target="_blank" title="GitHub" style="display: flex; align-items: center; text-decoration: none;">
                     <i class="fa-brands fa-github" style="color: #FFD43B; font-size: 2rem;"></i>
@@ -34,7 +54,7 @@
                     <div class="input-group">
                         <div class="input-wrapper">
                             <i class="fas fa-link input-icon"></i>
-                            <input type="url" id="urlInput" placeholder="Paste your long URL here..." required>
+                            <input type="url" id="urlInput" placeholder="Paste your long URL here..." required autocomplete="off">
                         </div>
                         <button id="shortenBtn" class="primary-btn">
                             <i class="fas fa-magic"></i>
