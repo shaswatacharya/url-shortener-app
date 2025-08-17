@@ -60,3 +60,4 @@ This project is for educational and personal use. Please credit the original ide
 - Font: [Montserrat](https://fonts.google.com/specimen/Montserrat)
 
 > This theme and design were created by [shaswatacharya](https://github.com/shaswatacharya), inspired by the original work of [unshreif](https://github.com/unshreif). The goal was to build upon the original idea, adding my own touch and improvements to deliver a more refined and feature-rich version while giving full credit to the source of inspiration.
+
