@@ -4,15 +4,15 @@ const resultContainer = document.getElementById('result');
 const urlHistory = document.getElementById('urlHistory');
 const notification = document.getElementById('notification');
 const notificationText = document.getElementById('notificationText');
+const themeToggle = document.querySelector('.theme-toggle');
 const clearHistoryBtn = document.getElementById('clearHistory');
 const customSlug = document.getElementById('customSlug');
 
 let urlHistoryData = JSON.parse(localStorage.getItem('urlHistory')) || [];
-// Always use dark mode
-let isDarkMode = true;
-document.body.setAttribute('data-theme', 'dark');
+let isDarkMode = localStorage.getItem('darkMode') === 'true';
 
 updateUrlHistory();
+updateTheme();
 
 shortenBtn.addEventListener('click', handleShorten);
 urlInput.addEventListener('keypress', (e) => {
@@ -20,8 +20,20 @@ urlInput.addEventListener('keypress', (e) => {
         handleShorten();
     }
 });
+themeToggle.addEventListener('click', toggleTheme);
 clearHistoryBtn.addEventListener('click', clearHistory);
 customSlug.addEventListener('input', validateCustomSlug);
+
+function toggleTheme() {
+    isDarkMode = !isDarkMode;
+    localStorage.setItem('darkMode', isDarkMode);
+    updateTheme();
+}
+
+function updateTheme() {
+    document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    themeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+}
 
 function clearHistory() {
     if (urlHistoryData.length === 0) {
@@ -115,9 +127,9 @@ function showResult(originalUrl, shortenedUrl) {
         <div class="qr-code-container">
             <img id="qr-img" src="${qrCodeUrl}" alt="QR Code" class="qr-code-image">
             <div class="qr-code-actions">
-                <button class="action-btn" id="downloadQR">
+                <a href="${qrCodeUrl}" download="qr-code.png" class="action-btn" id="downloadQR">
                     <i class="fas fa-download"></i> Download QR
-                </button>
+                </a>
                 <button class="action-btn" id="copyQR">
                     <i class="fas fa-copy"></i> Copy QR
                 </button>
@@ -125,27 +137,6 @@ function showResult(originalUrl, shortenedUrl) {
         </div>
     `;
     resultContainer.classList.add('show');
-
-    // Download QR code image
-    document.getElementById('downloadQR').onclick = async () => {
-        const img = document.getElementById('qr-img');
-        if (img) {
-            try {
-                const response = await fetch(img.src);
-                const blob = await response.blob();
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'qr-code.png';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            } catch (err) {
-                showNotification('Failed to download QR code', 'error');
-            }
-        }
-    };
 
     // Copy QR code image to clipboard
     document.getElementById('copyQR').onclick = async () => {
@@ -167,8 +158,8 @@ function showResult(originalUrl, shortenedUrl) {
 
 function generateQRCodeUrl(url) {
     const size = '200x200';
-    const foreground = 'ffffff'; // Always white for dark mode
-    const background = '1f2937'; // Always dark for dark mode
+    const foreground = isDarkMode ? 'ffffff' : '000000';
+    const background = isDarkMode ? '1f2937' : 'ffffff';
     return `https://api.qrserver.com/v1/create-qr-code/?size=${size}&data=${encodeURIComponent(url)}&color=${foreground}&bgcolor=${background}`;
 }
 
